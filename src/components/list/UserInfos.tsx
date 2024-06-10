@@ -1,5 +1,5 @@
 import { Avatar, AvatarFallback } from "../ui/avatar";
-import { EllipsisVertical } from "lucide-react";
+import { Ellipsis } from "lucide-react";
 
 const UserInfos = () => {
 
@@ -14,7 +14,7 @@ const UserInfos = () => {
             <span className="text-white/80 font-extralight"> @cristooojr </span>
         </div>
       </div>
-      <EllipsisVertical className="cursor-pointer text-white" />
+      <Ellipsis className="cursor-pointer text-white" />
     </div>
   );
 };
