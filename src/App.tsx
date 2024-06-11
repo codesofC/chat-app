@@ -1,20 +1,20 @@
-import Chat from "./components/chat"
-import Details from "./components/details"
-import List from "./components/list"
-import { Card } from "./components/ui/card"
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+import Home from "./components/Home"
+import Login from "./components/login"
 
 
 
 function App() {
 
   return (
-    <main className='w-full h-[100vh] overflow-hidden flex items-center justify-center bg-white'>
-      <Card className="w-4/5 h-[90%] flex rounded-xl overflow-hidden">
-        <List />
-        <Chat />
-        <Details />
-      </Card>
-    </main>
+    <div className="w-full h-[100vh] flex items-center justify-center">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
   )
 }
 
