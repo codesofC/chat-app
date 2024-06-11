@@ -1,7 +1,17 @@
+import { useEffect, useRef } from "react";
 import { Avatar, AvatarImage } from "../ui/avatar";
 import { Card } from "../ui/card";
 
 const ChatContent = () => {
+
+  const endRef = useRef(null)
+
+  useEffect(() => {
+    // if(endRef.current) {
+    //   endRef.current?.scrollIntoView({behavior: "smooth"})
+    // }
+  }, [])
+
   return (
     <div className="flex-1 p-4 overflow-y-auto flex flex-col gap-2 scrollbar-thin scrollbar-thumb-current">
       <div className="flex gap-2 items-start">
@@ -62,6 +72,8 @@ const ChatContent = () => {
           />
         </div>
       </div>
+
+      <div ref={endRef}></div>
     </div>
   );
 };

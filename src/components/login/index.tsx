@@ -1,11 +1,31 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "@/lib/Firebase";
+import { useGlobalContext } from "@/context/useGlobalContext";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [handleSign, setHandleSign] = useState(false);
 
+  const {setSessionId} = useGlobalContext()
+
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    const getIfIsSession = async () => {
+      await onAuthStateChanged(auth, (userCredencial) => {
+        if(userCredencial){
+          setSessionId(userCredencial.uid) 
+          navigate("/")
+        } 
+      })
+    }
+    getIfIsSession()
+  }, [setSessionId, navigate])
+  
   return (
     <main className="w-full h-full lg:w-[90%] xl:w-4/5 lg:h-[90%] grid lg:grid-cols-2 rounded-xl overflow-hidden shadow-xl">
       <div className="hidden lg:flex bg-secondary">

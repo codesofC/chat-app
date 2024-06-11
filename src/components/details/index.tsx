@@ -4,8 +4,20 @@ import ChatSettings from "./ChatSettings";
 import HeaderDetails from "./HeaderDetails";
 import SharedFiles from "./SharedFiles";
 import SharedPhotos from "./SharedPhotos";
+import { signout } from "@/lib/Firebase";
+import { useNavigate } from "react-router-dom";
 
 const Details = () => {
+
+  const navigate = useNavigate()
+
+  const logout = () => {
+    signout()
+    .then(() => {
+      navigate("/login")
+    })
+  }
+
   return (
     <div className="flex-1 h-full bg-background flex flex-col py-4">
       <HeaderDetails />
@@ -17,7 +29,10 @@ const Details = () => {
         <SharedFiles />
       </div>
 
-      <Button className="mx-8 flex items-center gap-2 bg-red-600">
+      <Button 
+        onClick={logout}
+        className="mx-8 flex items-center gap-2 bg-red-600"
+      >
         <UserRoundX />
         <span className="text-lg font-semibold"> Block User </span>
       </Button>

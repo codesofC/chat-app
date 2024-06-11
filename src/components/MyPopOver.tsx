@@ -14,7 +14,7 @@ const MyPopOver = ({
   return (
     <Popover>
       <PopoverTrigger>
-        <Button className={cn(buttonClassName, "bg-transparent text-secondary-foreground px-0 hover:bg-transparent")}>
+        <Button asChild className={cn(buttonClassName, "bg-transparent text-secondary-foreground px-0 hover:bg-transparent")}>
           {buttonOver}
         </Button>
       </PopoverTrigger>
