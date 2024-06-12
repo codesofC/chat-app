@@ -9,16 +9,14 @@ import {  getUser } from "@/lib/Firebase";
 const GlobalContext = ({ children }: {children: React.ReactNode}) => {
 
   const [sessionId, setSessionId] = useState("")
-  const {data: user, isPending: isLoading, isError} = useQuery({
+  const {data: user, isPending: isLoading} = useQuery({
     queryKey: ["user", sessionId],
-    queryFn: () => getUser(sessionId)
+    queryFn: sessionId.length > 0 ? () => getUser(sessionId) : undefined
   })
 
 
 
-  if(isError){
-    return <div>Error</div>
-  }
+  
 
   return <context.Provider value={{ user, isLoading, sessionId, setSessionId}}>
     {children}

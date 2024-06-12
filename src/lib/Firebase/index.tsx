@@ -10,12 +10,12 @@ import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBKK5XqPHVUdbUcE_JiXwFpRMpOpX5VoLk",
-  authDomain: "chatapp-42b9d.firebaseapp.com",
-  projectId: "chatapp-42b9d",
-  storageBucket: "chatapp-42b9d.appspot.com",
-  messagingSenderId: "418945196129",
-  appId: "1:418945196129:web:555e2c265e5175b284ca20",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_SENDER_ID,
+  appId: import.meta.env.VIITE_APP_ID,
 };
 
 const app = initializeApp(firebaseConfig);
@@ -55,7 +55,7 @@ export const signIn = async (email: string, password: string) => {
 
 //Sign Out
 export const signout = async () => {
-  signOut(auth)
+  await signOut(auth)
     .then(() => {
       return true;
     })

@@ -14,17 +14,17 @@ const Login = () => {
 
   const navigate = useNavigate()
 
-  useEffect(() => {
-    const getIfIsSession = async () => {
-      await onAuthStateChanged(auth, (userCredencial) => {
-        if(userCredencial){
-          setSessionId(userCredencial.uid) 
-          navigate("/")
-        } 
-      })
-    }
-    getIfIsSession()
-  }, [setSessionId, navigate])
+  // useEffect(() => {
+  //   const getIfIsSession = async () => {
+  //     await onAuthStateChanged(auth, (userCredencial) => {
+  //       if(userCredencial){
+  //         setSessionId(userCredencial.uid) 
+  //         navigate("/")
+  //       } 
+  //     })
+  //   }
+  //   getIfIsSession()
+  // }, [setSessionId, navigate])
   
   return (
     <main className="w-full h-full lg:w-[90%] xl:w-4/5 lg:h-[90%] grid lg:grid-cols-2 rounded-xl overflow-hidden shadow-xl">

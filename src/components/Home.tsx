@@ -13,18 +13,18 @@ const Home = () => {
   const { setSessionId } = useGlobalContext()
   const navigate = useNavigate()
 
-  useEffect(() => {
-    const getIfIsSession = async () => {
-      await onAuthStateChanged(auth, (userCredencial) => {
-        if(userCredencial){
-          setSessionId(userCredencial.uid) 
-        } else {
-          navigate("/login")
-        }
-      })
-    }
-    getIfIsSession()
-  }, [setSessionId, navigate])
+  // useEffect(() => {
+  //   const getIfIsSession = async () => {
+  //     await onAuthStateChanged(auth, (userCredencial) => {
+  //       if(userCredencial){
+  //         setSessionId(userCredencial.uid) 
+  //       } else {
+  //         navigate("/login")
+  //       }
+  //     })
+  //   }
+  //   getIfIsSession()
+  // }, [setSessionId, navigate])
   
 
   return (

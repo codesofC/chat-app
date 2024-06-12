@@ -11,8 +11,8 @@ const Details = () => {
 
   const navigate = useNavigate()
 
-  const logout = () => {
-    signout()
+  const logout = async () => {
+    await signout()
     .then(() => {
       navigate("/login")
     })
