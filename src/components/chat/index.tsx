@@ -1,4 +1,3 @@
-import { useGlobalContext } from "@/context/useGlobalContext"
 import ChatContent from "./ChatContent"
 import FooterChat from "./FooterChat"
 import HearderChat from "./HearderChat"
@@ -6,9 +5,6 @@ import HearderChat from "./HearderChat"
 
 const Chat = () => {
 
-  const {user} = useGlobalContext()
-
-  console.log(user);
 
 
   return (

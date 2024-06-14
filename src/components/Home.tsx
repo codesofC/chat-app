@@ -13,27 +13,28 @@ const Home = () => {
   const { setSessionId } = useGlobalContext()
   const navigate = useNavigate()
 
-  // useEffect(() => {
-  //   const getIfIsSession = async () => {
-  //     await onAuthStateChanged(auth, (userCredencial) => {
-  //       if(userCredencial){
-  //         setSessionId(userCredencial.uid) 
-  //       } else {
-  //         navigate("/login")
-  //       }
-  //     })
-  //   }
-  //   getIfIsSession()
-  // }, [setSessionId, navigate])
-  
+  useEffect(() => {
+    const getIfIsSession = async () => {
+      await onAuthStateChanged(auth, (userCredencial) => {
+        if(userCredencial){
+          setSessionId(userCredencial.uid) 
+        } else {
+          navigate("/login")
+        }
+      })
+    }
+    getIfIsSession()
+  }, [setSessionId, navigate])
+
+
 
   return (
-    <Card className="w-4/5 h-[90%] flex rounded-xl overflow-hidden">
+    <Card className="relative w-4/5 h-[90%] flex rounded-xl overflow-hidden">
       <List />
       <Chat />
       <Details />
     </Card>
-  );
+  )
 };
 
 export default Home;

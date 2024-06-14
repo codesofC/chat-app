@@ -1,0 +1,65 @@
+import { Plus } from "lucide-react";
+import { Button } from "../ui/button";
+import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog";
+import { Input } from "../ui/input";
+import { useState } from "react";
+import { getUsersToAdd } from "@/lib/Firebase";
+import { UserProps } from "@/types";
+
+const AddNewChat = () => {
+
+  const [usersFounded, setUsersFounded] = useState<UserProps []>([])
+
+  const handleSearch = async (username: string) => {
+
+    const founded = await getUsersToAdd(username)
+
+    if(founded){
+      setUsersFounded(founded)
+    }
+  }
+
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button className="text-secondary-foreground bg-transparent hover:bg-transparent">
+          <Plus />
+        </Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[425px] bg-secondary">
+        <div className="flex flex-col py-4 gap-4">
+          <div className="w-full">
+              <Input
+                id="username"
+                placeholder="Username"
+                className="w-full text-secondary-foreground"
+                onChange={e => handleSearch(e.target.value)}
+              />
+          </div>
+          <div className="flex flex-col gap-2 text-secondary-foreground">
+            <h3 className="text-sm font-bold"> Users found: </h3>
+            <div>
+              {usersFounded.length > 0 ? (
+                usersFounded.map(user => (
+                  <div 
+                    key={user.uid}
+                    className="w-full flex items-center justify-between border-y py-2"
+                  >
+                    <span className="font-semibold"> {user.username} </span>
+                    <Button type="submit">Add</Button>
+                  </div>
+                ))
+              ) : (
+                <div className="text-center mt-4 font-semibold">
+                  Not user found
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      </DialogContent>
+    </Dialog>
+  );
+};
+
+export default AddNewChat;

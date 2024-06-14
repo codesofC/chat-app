@@ -1,4 +1,4 @@
-import { UserProps } from "@/types";
+import { ChatsProps, UserProps } from "@/types";
 import { initializeApp } from "firebase/app";
 import {
   createUserWithEmailAndPassword,
@@ -6,7 +6,7 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, getFirestore, query, setDoc, where } from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 
 const firebaseConfig = {
@@ -32,7 +32,7 @@ export const signup = async (email: string, password: string) => {
       password
     );
 
-    return userCredencial.user.uid
+    return userCredencial.user.uid;
   } catch (error) {
     console.log(error);
   }
@@ -67,12 +67,14 @@ export const signout = async () => {
 export const addUser = async (data: UserProps) => {
   try {
     const docRef = doc(db, `users/${data.uid}`);
+    const chatRef = doc(db, `userChats/${data.uid}`);
 
     await setDoc(docRef, {
-      uid: data.uid,
-      username: data.username,
-      email: data.email,
-      avatar: data.avatar,
+      ...data,
+    });
+
+    await setDoc(chatRef, {
+      chats: [],
     });
   } catch (error) {
     console.log(error);
@@ -80,12 +82,29 @@ export const addUser = async (data: UserProps) => {
 };
 //Get User
 export const getUser = async (uid: string) => {
-  const userRef = doc(db, `users/${uid}`);
-  const docSnap = await getDoc(userRef);
+  try {
+    const userRef = doc(db, `users/${uid}`);
+    const docSnap = await getDoc(userRef);
 
-  return docSnap?.data();
+    return docSnap?.data() as UserProps;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
+//Get Chats Data of user
+export const getChats = async (uid: string) => {
+  try {
+    const userRef = doc(db, `userChats/${uid}`);
+    const docSnap = await getDoc(userRef);
+
+    return docSnap?.data() as ChatsProps;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+//Upload image avatar
 export const uploadFiles = async (file: File) => {
   try {
     const fileRef = ref(storage, `files/${file.name}`);
@@ -96,3 +115,23 @@ export const uploadFiles = async (file: File) => {
     console.log("File not uploaded: ", error);
   }
 };
+
+//getUsers to add conversation
+export const getUsersToAdd = async (username: string) => {
+
+  try {
+    const docRef = collection(db, "users");
+    const q = query(docRef, where("username", "==", username))
+
+    const querySnapshot = await getDocs(q);
+    const usersFound: UserProps[] = []
+    querySnapshot.forEach((doc) => {
+      usersFound.push(doc.data() as UserProps);
+    });
+
+    return usersFound
+  } catch (error) {
+    console.log("Error to fetch users to add conversation");
+  }
+
+}

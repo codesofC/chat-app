@@ -1,5 +1,4 @@
 import {  User } from "firebase/auth";
-import { DocumentData } from "firebase/firestore";
 import React from "react";
 
 export interface PopoverProps {
@@ -27,14 +26,25 @@ export interface FirebaseProps {
 export interface UserProps {
     username: string,
     email: string,
-    password?: string,
     avatar?: string,
-    uid?: string
+    uid: string,
+    blocked: string [],
 }
 
 export interface GlobalContextProps{
-    user: DocumentData | undefined,
+    user: UserProps | undefined,
     isLoading: boolean,
     sessionId: string,
     setSessionId: React.Dispatch<React.SetStateAction<string>>
+}
+
+export interface ReceiverProps {
+    receiverId: string,
+    lastMessage: string,
+    isExist: boolean,
+    receiverData?: UserProps
+}
+
+export interface ChatsProps {
+    chats: ReceiverProps []
 }

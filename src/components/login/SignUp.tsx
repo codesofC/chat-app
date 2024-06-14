@@ -47,8 +47,9 @@ const SignUp = ({ setHandleSign }: LoginProps) => {
             avatar: url || "",
             uid: userId,
             username: data.username,
+            blocked: [],
           })
-            .then(() => {
+            .then(async () => {
               setSessionId(userId);
               navigate("/");
             })
