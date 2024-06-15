@@ -1,19 +1,19 @@
 import { ReceiverProps } from "@/types";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import { useChatContext } from "@/context/useChatContext";
+import MyAvatar from "../MyAvatar";
 
 const CardChat = ({ chat }: { chat: ReceiverProps }) => {
+
+  const {setCurrentReceiver} = useChatContext()
+
   return (
-    <div className="w-full p-4 flex items-center justify-between group hover:bg-primary transition-colors duration-150 cursor-pointer">
-      <div className="flex items-center gap-3">
-        <Avatar className="w-10 h-10">
-          {chat.receiverData?.avatar ? (
-            <AvatarImage src={chat.receiverData?.avatar} />
-          ) : (
-            <AvatarFallback className="text-lg text-black font-bold">
-              {chat.receiverData?.username.charAt(0).toUpperCase()}
-            </AvatarFallback>
-          )}
-        </Avatar>
+    <div 
+      className="w-full p-4 flex items-center justify-between group hover:bg-primary transition-colors duration-150 cursor-pointer"
+      onClick={() => setCurrentReceiver(chat)}
+    >
+      <div className="flex items-center gap-3"
+      >
+        <MyAvatar username={chat.receiverData?.username || ""} avatarUrl={chat.receiverData?.avatar} />
         <div className="flex flex-col max-w-[70%]">
           <span className="text-black group-hover:text-white font-bold">
             {" "}

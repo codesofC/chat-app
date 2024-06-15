@@ -5,17 +5,20 @@ import AddNewChat from "./AddNewChat";
 import { useGlobalContext } from "@/context/useGlobalContext";
 import { getChats, getUser } from "@/lib/Firebase";
 import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
 
 const ChatList = () => {
   const { sessionId, user } = useGlobalContext();
 
+  const [refresh, setRefresh] = useState(false)
+
   const {data: allChatsData, isPending: chatsLoading, isError} = useQuery({
-    queryKey: ['chatsData'],
-    queryFn: fetchChats,
+    queryKey: ['chatsData', refresh],
+    queryFn: fetchUsersChats,
     enabled: user !== undefined
   })
 
-  async function fetchChats() {
+  async function fetchUsersChats() {
     const chatsData = await getChats(sessionId)
 
     if(chatsData){
@@ -31,7 +34,7 @@ const ChatList = () => {
 
       const allReceiversData = await Promise.all(chatsWithReceiverData)
 
-      return allReceiversData
+      return allReceiversData.sort((a, b) => b.updatedAt - a.updatedAt)
     }
   }
 
@@ -54,7 +57,7 @@ const ChatList = () => {
           <Search color="gray" className="cursor-pointer" />
         </div>
 
-        <AddNewChat />
+        <AddNewChat setRefresh={setRefresh} />
       </div>
       {chatsLoading ? (
         <span className="mt-4 w-full text-center"> Loading... </span>

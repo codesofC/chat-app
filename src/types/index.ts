@@ -1,4 +1,5 @@
 import {  User } from "firebase/auth";
+import { FieldValue } from "firebase/firestore";
 import React from "react";
 
 export interface PopoverProps {
@@ -13,6 +14,11 @@ export interface AccordionProps {
     children: React.ReactNode,
     contentClassName?: string,
     triggerClassName?: string
+}
+export interface AvatarProps {
+    avatarUrl?: string,
+    username: string,
+    avatarStyles?: string
 }
 
 export interface LoginProps {
@@ -38,13 +44,33 @@ export interface GlobalContextProps{
     setSessionId: React.Dispatch<React.SetStateAction<string>>
 }
 
+
 export interface ReceiverProps {
     receiverId: string,
     lastMessage: string,
     isExist: boolean,
-    receiverData?: UserProps
+    receiverData?: UserProps,
+    updatedAt: any,
+    chatId: string
 }
 
 export interface ChatsProps {
     chats: ReceiverProps []
 }
+
+export interface MessageProps{
+    type: "text" | "image" | "video",
+    content: string,
+    role: "sender" | "receiver"
+}
+export interface ChatDataProps{
+    createdAt: FieldValue,
+    messages: MessageProps[]
+}
+export interface ChatContextProps{
+    currentReceiver: ReceiverProps | undefined,
+    setCurrentReceiver: React.Dispatch<React.SetStateAction<ReceiverProps | undefined>>,
+    chatData: ChatDataProps | undefined,
+    setChatData: React.Dispatch<React.SetStateAction<ChatDataProps | undefined>>,
+}
+

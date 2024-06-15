@@ -49,7 +49,7 @@ const SignUp = ({ setHandleSign }: LoginProps) => {
             username: data.username,
             blocked: [],
           })
-            .then(async () => {
+            .then(() => {
               setSessionId(userId);
               navigate("/");
             })

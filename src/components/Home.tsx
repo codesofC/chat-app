@@ -7,34 +7,34 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/lib/Firebase";
 import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "@/context/useGlobalContext";
+import ChatContext from "@/context/ChatContext";
 
 const Home = () => {
-
-  const { setSessionId } = useGlobalContext()
-  const navigate = useNavigate()
+  const { setSessionId } = useGlobalContext();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getIfIsSession = async () => {
       await onAuthStateChanged(auth, (userCredencial) => {
-        if(userCredencial){
-          setSessionId(userCredencial.uid) 
+        if (userCredencial) {
+          setSessionId(userCredencial.uid);
         } else {
-          navigate("/login")
+          navigate("/login");
         }
-      })
-    }
-    getIfIsSession()
-  }, [setSessionId, navigate])
-
-
+      });
+    };
+    getIfIsSession();
+  }, [setSessionId, navigate]);
 
   return (
-    <Card className="relative w-4/5 h-[90%] flex rounded-xl overflow-hidden">
-      <List />
-      <Chat />
-      <Details />
-    </Card>
-  )
+    <ChatContext>
+      <Card className="relative w-4/5 h-[90%] flex rounded-xl overflow-hidden">
+        <List />
+        <Chat />
+        <Details />
+      </Card>
+    </ChatContext>
+  );
 };
 
 export default Home;

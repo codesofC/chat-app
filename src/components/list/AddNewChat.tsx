@@ -3,24 +3,38 @@ import { Button } from "../ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog";
 import { Input } from "../ui/input";
 import { useState } from "react";
-import { getUsersToAdd } from "@/lib/Firebase";
+import { createNewChat, getUsersToAdd } from "@/lib/Firebase";
 import { UserProps } from "@/types";
+import { useGlobalContext } from "@/context/useGlobalContext";
 
-const AddNewChat = () => {
+const AddNewChat = ({ setRefresh }: { setRefresh: React.Dispatch<React.SetStateAction<boolean>>}) => {
 
   const [usersFounded, setUsersFounded] = useState<UserProps []>([])
+  const [open, setOpen] = useState(false)
+
+  const { user } = useGlobalContext()
 
   const handleSearch = async (username: string) => {
-
-    const founded = await getUsersToAdd(username)
-
+    const founded = await getUsersToAdd(username, user?.username || "")
+    
     if(founded){
       setUsersFounded(founded)
     }
   }
 
+  const addChat = async (receverUid: string) => {
+    
+    if(user){
+      await createNewChat(user?.uid, receverUid).then(() => {
+        setRefresh(prev => !prev)
+      })
+    }
+    setOpen(false)
+    setUsersFounded([])
+  }
+
   return (
-    <Dialog>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button className="text-secondary-foreground bg-transparent hover:bg-transparent">
           <Plus />
@@ -46,7 +60,7 @@ const AddNewChat = () => {
                     className="w-full flex items-center justify-between border-y py-2"
                   >
                     <span className="font-semibold"> {user.username} </span>
-                    <Button type="submit">Add</Button>
+                    <Button type="submit" onClick={() => addChat(user.uid)} >Add</Button>
                   </div>
                 ))
               ) : (

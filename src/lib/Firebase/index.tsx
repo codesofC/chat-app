@@ -6,7 +6,19 @@ import {
   signInWithEmailAndPassword,
   signOut,
 } from "firebase/auth";
-import { collection, doc, getDoc, getDocs, getFirestore, query, setDoc, where } from "firebase/firestore";
+import {
+  arrayUnion,
+  collection,
+  doc,
+  getDoc,
+  getDocs,
+  getFirestore,
+  query,
+  serverTimestamp,
+  setDoc,
+  updateDoc,
+  where,
+} from "firebase/firestore";
 import { getDownloadURL, getStorage, ref, uploadBytes } from "firebase/storage";
 
 const firebaseConfig = {
@@ -19,7 +31,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+export const db = getFirestore(app);
 const storage = getStorage(app);
 export const auth = getAuth(app);
 
@@ -117,21 +129,66 @@ export const uploadFiles = async (file: File) => {
 };
 
 //getUsers to add conversation
-export const getUsersToAdd = async (username: string) => {
-
+export const getUsersToAdd = async (
+  username: string,
+  currentUserUsername: string
+) => {
   try {
     const docRef = collection(db, "users");
-    const q = query(docRef, where("username", "==", username))
+    const q = query(docRef, where("username", "==", username));
 
     const querySnapshot = await getDocs(q);
-    const usersFound: UserProps[] = []
+    const usersFound: UserProps[] = [];
     querySnapshot.forEach((doc) => {
-      usersFound.push(doc.data() as UserProps);
+      const userFound = doc.data();
+      if (userFound.username !== currentUserUsername) {
+        usersFound.push(doc.data() as UserProps);
+      }
     });
 
-    return usersFound
+    return usersFound;
   } catch (error) {
     console.log("Error to fetch users to add conversation");
   }
+};
 
-}
+//Create a new chats
+export const createNewChat = async (
+  currentUserId: string,
+  receiverId: string
+) => {
+  const chatRef = collection(db, "chats");
+  const userChatsRef = collection(db, "userChats");
+
+  try {
+    const newChatRef = doc(chatRef);
+    await setDoc(newChatRef, {
+      createdAt: serverTimestamp(),
+      messages: [],
+    });
+
+    const dateUpdateAt = Date.now();
+
+    await updateDoc(doc(userChatsRef, receiverId), {
+      chats: arrayUnion({
+        chatId: newChatRef.id,
+        lastMessage: "",
+        receiverId: currentUserId,
+        updatedAt: dateUpdateAt,
+      }),
+    });
+
+    await updateDoc(doc(userChatsRef, currentUserId), {
+      chats: arrayUnion({
+        chatId: newChatRef.id,
+        lastMessage: "",
+        receiverId: receiverId,
+        updatedAt: dateUpdateAt,
+      }),
+    });
+
+    return newChatRef.id;
+  } catch (error) {
+    console.log("Error creating chat: ", error);
+  }
+};
