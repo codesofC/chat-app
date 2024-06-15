@@ -175,6 +175,7 @@ export const createNewChat = async (
         lastMessage: "",
         receiverId: currentUserId,
         updatedAt: dateUpdateAt,
+        isSeen: true
       }),
     });
 
@@ -184,6 +185,7 @@ export const createNewChat = async (
         lastMessage: "",
         receiverId: receiverId,
         updatedAt: dateUpdateAt,
+        isSeen: true
       }),
     });
 
@@ -191,4 +193,80 @@ export const createNewChat = async (
   } catch (error) {
     console.log("Error creating chat: ", error);
   }
+};
+
+//Updated Chats Data
+export const updateChatsData = async (
+  chatId: string,
+  userUid: string,
+  type: string,
+  message: string
+) => {
+  try {
+    const chatRef = doc(db, `chats/${chatId}`);
+
+    await updateDoc(chatRef, {
+      messages: arrayUnion({
+        senderId: userUid,
+        type,
+        sendedAt: Date.now(),
+        content: message,
+      }),
+    });
+  } catch (error) {
+    console.log("Error in update chats data: ", error);
+  }
+};
+
+// update UserChatsData
+export const updateUserChatsData = (
+  chatId: string,
+  userUids: string[],
+  message: string,
+  type: string
+) => {
+  userUids.forEach(async (uid) => {
+    const chatData = await getChats(uid);
+
+    const dateUpdate = Date.now();
+
+    //Found chat to update for sender
+    if (chatData) {
+      const chatDataIndex = chatData.chats.findIndex(
+        (chat) => chat.chatId === chatId
+      );
+      chatData.chats[chatDataIndex].lastMessage = type === "text" ? message : "🖼 Media sended";
+      chatData.chats[chatDataIndex].isSeen = uid === userUids[0] ? true : false;
+      chatData.chats[chatDataIndex].updatedAt = dateUpdate;
+      const userRef = doc(db, `userChats/${uid}`);
+
+      await updateDoc(userRef, {
+        chats: chatData.chats,
+      });
+    }
+  });
+};
+
+export const updateViewMessage = async (
+  chatId: string,
+  userUid: string
+) => {
+ 
+    const chatData = await getChats(userUid);
+
+    //Found chat to update for sender
+    if (chatData) {
+      const chatDataIndex = chatData.chats.findIndex(
+        (chat) => chat.chatId === chatId
+      );
+
+      chatData.chats[chatDataIndex].isSeen =  true;
+  
+      const userRef = doc(db, `userChats/${userUid}`);
+
+      await updateDoc(userRef, {
+        chats: chatData.chats,
+      });
+    }
+
 };

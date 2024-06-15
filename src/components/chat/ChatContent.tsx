@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import { Avatar, AvatarImage } from "../ui/avatar";
 import { Card } from "../ui/card";
 import { useChatContext } from "@/context/useChatContext";
 import MyAvatar from "../MyAvatar";
@@ -17,17 +16,16 @@ const ChatContent = () => {
     // }
   }, []);
 
-  console.log(chatData);
 
   return (
     chatData && (
       <div className="flex-1 p-4 overflow-y-auto flex flex-col gap-2 scrollbar-thin scrollbar-thumb-current">
         {chatData.messages.length > 0 ? chatData.messages.map((message, index) => (
-          <div className={`flex gap-2 items-start ${message.role === "sender" ? 'justify-end' : null}`} key={index}>
+          <div className={`flex gap-1 items-start ${message.senderId === user?.uid ? 'flex-row-reverse' : null}`} key={index}>
             {currentReceiver?.receiverData && user && (
               <MyAvatar
-                username={message.role === "sender" ? user?.username : currentReceiver.receiverData.username}
-                avatarUrl={message.role === "sender" ? user?.avatar : currentReceiver.receiverData.avatar}
+                username={message.senderId === user.uid ? user?.username : currentReceiver.receiverData.username}
+                avatarUrl={message.senderId === user.uid ? user?.avatar : currentReceiver.receiverData.avatar}
                 avatarStyles="w-8 h-8"
               />
             )}
@@ -39,12 +37,12 @@ const ChatContent = () => {
                 <span className="text-xs"> 11:00 </span>
               </Card>
             ) : (
-              <div className={`relative max-w-[70%] px-2 py-1 text-foreground flex gap-2 items-end`}>
+              <div className={`relative max-w-[70%] px-2 py-1 text-foreground flex gap-2 items-end cursor-pointer`}>
                 <img
-                  src="https://img.ibxk.com.br/2024/01/17/17113534532068.jpg?ims=328x"
+                  src={message.content}
                   className="w-full h-[250px] object-cover rounded-lg"
                 />
-                <span className={`text-xs absolute bottom-4 ring-4 text-white`}> 11:00 </span>
+                <span className={`text-xs absolute bottom-4 right-4 text-white`}> 11:00 </span>
               </div>
             )}
           </div>

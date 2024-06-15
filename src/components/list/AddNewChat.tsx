@@ -7,7 +7,7 @@ import { createNewChat, getUsersToAdd } from "@/lib/Firebase";
 import { UserProps } from "@/types";
 import { useGlobalContext } from "@/context/useGlobalContext";
 
-const AddNewChat = ({ setRefresh }: { setRefresh: React.Dispatch<React.SetStateAction<boolean>>}) => {
+const AddNewChat = () => {
 
   const [usersFounded, setUsersFounded] = useState<UserProps []>([])
   const [open, setOpen] = useState(false)
@@ -25,9 +25,7 @@ const AddNewChat = ({ setRefresh }: { setRefresh: React.Dispatch<React.SetStateA
   const addChat = async (receverUid: string) => {
     
     if(user){
-      await createNewChat(user?.uid, receverUid).then(() => {
-        setRefresh(prev => !prev)
-      })
+      await createNewChat(user?.uid, receverUid)
     }
     setOpen(false)
     setUsersFounded([])

@@ -6,7 +6,9 @@ export interface PopoverProps {
     buttonOver: React.ReactNode,
     children: React.ReactNode,
     buttonClassName?: string,
-    popOverClassName?: string
+    popOverClassName?: string,
+    isOpen: boolean,
+    setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export interface AccordionProps {
@@ -48,7 +50,7 @@ export interface GlobalContextProps{
 export interface ReceiverProps {
     receiverId: string,
     lastMessage: string,
-    isExist: boolean,
+    isSeen: boolean,
     receiverData?: UserProps,
     updatedAt: any,
     chatId: string
@@ -59,9 +61,10 @@ export interface ChatsProps {
 }
 
 export interface MessageProps{
-    type: "text" | "image" | "video",
+    type: "text" | "media",
     content: string,
-    role: "sender" | "receiver"
+    senderId: string,
+    sendedAt: Date
 }
 export interface ChatDataProps{
     createdAt: FieldValue,
