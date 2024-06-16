@@ -1,6 +1,8 @@
 import { Ellipsis, Phone, Video } from "lucide-react"
 import { useChatContext } from "@/context/useChatContext"
 import MyAvatar from "../MyAvatar"
+import MyPopOver from "../MyPopOver"
+import { Button } from "../ui/button"
 
 
 const HearderChat = () => {
@@ -19,7 +21,10 @@ const HearderChat = () => {
       <div className="flex items-center justify-center gap-6">
         <Phone className="cursor-pointer hover:text-primary" />
         <Video className="cursor-pointer hover:text-primary" />
-        <Ellipsis className="cursor-pointer hover:text-primary" />
+        <MyPopOver buttonOver={<Ellipsis className="cursor-pointer hover:text-primary" />} popOverClassName="flex flex-col lg:hidden">
+          <Button className="w-full bg-transparent text-secondary-foreground hover:bg-primary hover:text-foreground sm:hidden"> Show List </Button>
+          <Button className="w-full bg-transparent text-secondary-foreground hover:bg-primary hover:text-foreground"> Show Details </Button>
+        </MyPopOver>
       </div>
     </div>
   )

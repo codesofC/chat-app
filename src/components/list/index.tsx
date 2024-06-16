@@ -3,7 +3,7 @@ import UserInfos from "./UserInfos"
 
 const List = () => {
   return (
-    <div className="flex-1 bg-background">
+    <div className="hidden sm:flex flex-col flex-1 bg-background">
       <UserInfos />
       <ChatList />
     </div>

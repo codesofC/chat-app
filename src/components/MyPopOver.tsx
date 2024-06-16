@@ -10,11 +10,9 @@ const MyPopOver = ({
   children,
   buttonClassName,
   popOverClassName,
-  isOpen,
-  setIsOpen
 }: PopoverProps) => {
   return (
-    <Popover open={isOpen} onOpenChange={setIsOpen}>
+    <Popover>
       <PopoverTrigger>
         <Button asChild className={cn(buttonClassName, "bg-transparent text-secondary-foreground px-0 hover:bg-transparent")}>
           {buttonOver}

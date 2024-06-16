@@ -28,7 +28,7 @@ const Home = () => {
 
   return (
     <ChatContext>
-      <Card className="relative w-4/5 h-[90%] flex rounded-xl overflow-hidden">
+      <Card className="relative w-full h-full flex rounded-none border-none overflow-hidden">
         <List />
         <Chat />
         <Details />

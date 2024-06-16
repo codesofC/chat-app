@@ -175,7 +175,9 @@ export const createNewChat = async (
         lastMessage: "",
         receiverId: currentUserId,
         updatedAt: dateUpdateAt,
-        isSeen: true
+        isSeen: true,
+        isReceiverBlocked: false,
+        isCurrentUserBlocked: false,
       }),
     });
 
@@ -185,7 +187,9 @@ export const createNewChat = async (
         lastMessage: "",
         receiverId: receiverId,
         updatedAt: dateUpdateAt,
-        isSeen: true
+        isSeen: true,
+        isReceiverBlocked: false,
+        isCurrentUserBlocked: false,
       }),
     });
 
@@ -235,7 +239,8 @@ export const updateUserChatsData = (
       const chatDataIndex = chatData.chats.findIndex(
         (chat) => chat.chatId === chatId
       );
-      chatData.chats[chatDataIndex].lastMessage = type === "text" ? message : "🖼 Media sended";
+      chatData.chats[chatDataIndex].lastMessage =
+        type === "text" ? message : "🖼 Media sended";
       chatData.chats[chatDataIndex].isSeen = uid === userUids[0] ? true : false;
       chatData.chats[chatDataIndex].updatedAt = dateUpdate;
       const userRef = doc(db, `userChats/${uid}`);
@@ -247,26 +252,21 @@ export const updateUserChatsData = (
   });
 };
 
-export const updateViewMessage = async (
-  chatId: string,
-  userUid: string
-) => {
- 
-    const chatData = await getChats(userUid);
+export const updateViewMessage = async (chatId: string, userUid: string) => {
+  const chatData = await getChats(userUid);
 
-    //Found chat to update for sender
-    if (chatData) {
-      const chatDataIndex = chatData.chats.findIndex(
-        (chat) => chat.chatId === chatId
-      );
+  //Found chat to update for sender
+  if (chatData) {
+    const chatDataIndex = chatData.chats.findIndex(
+      (chat) => chat.chatId === chatId
+    );
 
-      chatData.chats[chatDataIndex].isSeen =  true;
-  
-      const userRef = doc(db, `userChats/${userUid}`);
+    chatData.chats[chatDataIndex].isSeen = true;
 
-      await updateDoc(userRef, {
-        chats: chatData.chats,
-      });
-    }
+    const userRef = doc(db, `userChats/${userUid}`);
 
+    await updateDoc(userRef, {
+      chats: chatData.chats,
+    });
+  }
 };

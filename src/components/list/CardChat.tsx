@@ -10,6 +10,7 @@ const CardChat = ({ chat }: { chat: ReceiverProps }) => {
 
   const changeUserViewMessage = () => {
     if(user){
+      
       updateViewMessage(chat.chatId, user?.uid)
       setCurrentReceiver(chat)
     }
@@ -43,7 +44,7 @@ const CardChat = ({ chat }: { chat: ReceiverProps }) => {
         </span>
       </div>
       {
-        !chat.isSeen && (<span className="absolute top-2 right-2 text-xs p-1 bg-primary rounded-sm text-white/80">
+        !chat.isSeen && chat.lastMessage !== "" && (<span className="absolute top-2 right-2 text-xs p-1 bg-primary rounded-sm text-white/80">
           New message
         </span>)
       }

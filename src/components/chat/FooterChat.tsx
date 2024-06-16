@@ -1,10 +1,9 @@
-import { Mic, SendHorizonal, Smile } from "lucide-react";
+import { Images, Mic, SendHorizonal, Smile } from "lucide-react";
 import { Card } from "../ui/card";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import EmojiPicker, { EmojiClickData } from "emoji-picker-react";
 import { useState } from "react";
-import PickerFile from "./PickerFile";
 import { updateChatsData, updateUserChatsData, uploadFiles } from "@/lib/Firebase";
 import { useGlobalContext } from "@/context/useGlobalContext";
 import { useChatContext } from "@/context/useChatContext";
@@ -44,7 +43,17 @@ const FooterChat = () => {
     }
   }
 
-  return (
+  const handleChangeFile = (fileToSend: File | null) => {
+    if(!fileToSend) return
+
+    sendMedia(fileToSend)
+  }
+
+  return currentReceiver && (currentReceiver.isReceiverBlocked || currentReceiver.isCurrentUserBlocked) ? (
+    <Card className="flex gap-2 items-center justify-center p-2 mx-4 mb-4">
+      Conversation blocked
+    </Card>
+  ) : (
     <Card className="flex gap-2 items-center p-2 mx-4 mb-4">
       <div className="relative">
         <Smile
@@ -65,13 +74,21 @@ const FooterChat = () => {
         placeholder="type message"
         className="bg-transparent border-none flex-1 px-0"
       />
-      <PickerFile sendMedia={sendMedia}/>
+      <div className="relative flex">
+        <Images size={20} />
+        <Input 
+          type="file" 
+          accept="image/png, image/jpeg, image/webp, image/jpg" 
+          className="w-full h-full  cursor-pointer absolute opacity-0" 
+          onChange={e => handleChangeFile(e.target.files ? e.target.files[0] : null)}
+        />
+      </div>
       <Mic size={20} className="cursor-pointer" />
       <Button className="p-2 bg-primary" onClick={sendMessage}>
         <SendHorizonal size={20} className="cursor-pointer" />
       </Button>
     </Card>
-  );
+  )
 };
 
 export default FooterChat;

@@ -12,7 +12,6 @@ const HeaderDetails = ({username, avatarUrl}: HeaderDetailsData) => {
         <MyAvatar username={username} avatarUrl={avatarUrl} avatarStyles="w-24 h-24" />
         <div className="flex flex-col items-center">
             <span className="font-bold"> {username} </span>
-            <span className="text-sm font-extralight"> Lorem ipsum dolor sit amet. </span>
         </div>
     </div>
   )

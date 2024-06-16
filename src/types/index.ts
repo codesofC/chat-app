@@ -7,8 +7,6 @@ export interface PopoverProps {
     children: React.ReactNode,
     buttonClassName?: string,
     popOverClassName?: string,
-    isOpen: boolean,
-    setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export interface AccordionProps {
@@ -53,7 +51,9 @@ export interface ReceiverProps {
     isSeen: boolean,
     receiverData?: UserProps,
     updatedAt: any,
-    chatId: string
+    chatId: string,
+    isReceiverBlocked: boolean,
+    isCurrentUserBlocked: boolean
 }
 
 export interface ChatsProps {
