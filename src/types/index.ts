@@ -75,5 +75,8 @@ export interface ChatContextProps{
     setCurrentReceiver: React.Dispatch<React.SetStateAction<ReceiverProps | undefined>>,
     chatData: ChatDataProps | undefined,
     setChatData: React.Dispatch<React.SetStateAction<ChatDataProps | undefined>>,
+    showDetails: boolean,
+    setShowDetails: React.Dispatch<React.SetStateAction<boolean>>
+    showChatList: boolean,
+    setShowChatList: React.Dispatch<React.SetStateAction<boolean>>
 }
-

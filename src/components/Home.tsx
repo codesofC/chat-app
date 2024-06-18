@@ -13,6 +13,7 @@ const Home = () => {
   const { setSessionId } = useGlobalContext();
   const navigate = useNavigate();
 
+
   useEffect(() => {
     const getIfIsSession = async () => {
       await onAuthStateChanged(auth, (userCredencial) => {
@@ -29,9 +30,11 @@ const Home = () => {
   return (
     <ChatContext>
       <Card className="relative w-full h-full flex rounded-none border-none overflow-hidden">
-        <List />
+        <List 
+        />
         <Chat />
-        <Details />
+        <Details 
+        />
       </Card>
     </ChatContext>
   );

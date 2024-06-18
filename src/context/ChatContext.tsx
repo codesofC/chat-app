@@ -8,6 +8,8 @@ const ChatContext = ({ children }: { children: React.ReactNode }) => {
 
   const [currentReceiver, setCurrentReceiver] = useState<ReceiverProps>();
   const [chatData, setChatData] = useState<ChatDataProps>();
+  const [showChatList, setShowChatList] = useState(false)
+  const [showDetails, setShowDetails] = useState(false)
 
   //Listen chat data update from database in realtime
   useEffect(() => {
@@ -30,6 +32,10 @@ const ChatContext = ({ children }: { children: React.ReactNode }) => {
         setCurrentReceiver,
         chatData,
         setChatData,
+        setShowChatList,
+        setShowDetails,
+        showChatList,
+        showDetails
       }}
     >
       {children}

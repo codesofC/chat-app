@@ -20,6 +20,14 @@ const ChatContent = () => {
     }
   });
 
+  const convertDate = (time: Date) => {
+    const date = new Date(time)
+
+    const hours = date.getHours()
+    const minutes = date.getMinutes()
+
+    return `${hours}:${minutes}`
+   }
 
   return (
     chatData && (
@@ -38,7 +46,7 @@ const ChatContent = () => {
                 <p className="flex flex-wrap py-1">
                   {message.content}
                 </p>
-                <span className="text-xs"> 11:00 </span>
+                <span className="text-xs"> {convertDate(message.sendedAt)} </span>
               </Card>
             ) : (
               <div className={`relative max-w-[70%] text-foreground flex gap-2 items-end bg-black rounded-md overflow-hidden cursor-pointer`}>
@@ -47,7 +55,7 @@ const ChatContent = () => {
                   className="w-full h-[250px] object-cover"
                 />
                 <div className="w-full h-full bg-[rgba(0,0,0,.2)] absolute top-0 bottom-0" />
-                <div className={`text-xs absolute bottom-2 z-10 ${message.senderId === user?.uid ? 'left-4' : 'right-4'} text-white`}> 11:00 </div>
+                <div className={`text-xs absolute bottom-2 z-10 ${message.senderId === user?.uid ? 'left-4' : 'right-4'} text-white`}> {convertDate(message.sendedAt)} </div>
               </div>
             )}
           </div>
