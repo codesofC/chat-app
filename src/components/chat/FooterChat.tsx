@@ -54,7 +54,7 @@ const FooterChat = () => {
       Conversation blocked
     </Card>
   ) : (
-    <Card className="flex gap-2 items-center p-2 mx-4 mb-4">
+    <Card className="flex gap-2 items-center justify-between p-2 mx-4 mb-4">
       <div className="relative">
         <Smile
           size={20}
@@ -68,11 +68,11 @@ const FooterChat = () => {
           />
         </div>
       </div>
-      <Input
+      <textarea
         value={message}
         onChange={(e) => setMessage(e.target.value)}
         placeholder="type message"
-        className="bg-transparent border-none flex-1 px-0"
+        className="bg-transparent flex-1 h-6 focus:outline-none resize-none px-1"
       />
       <div className="relative flex">
         <Images size={20} />

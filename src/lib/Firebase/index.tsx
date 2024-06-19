@@ -252,6 +252,7 @@ export const updateUserChatsData = (
   });
 };
 
+//Update Message view
 export const updateViewMessage = async (chatId: string, userUid: string) => {
   const chatData = await getChats(userUid);
 
@@ -270,3 +271,16 @@ export const updateViewMessage = async (chatId: string, userUid: string) => {
     });
   }
 };
+
+//Update avatar user
+export const updateYourAvatar = async (userId: string, url: string) => {
+
+  try {
+    const docRef = doc(db, `users/${userId}`)
+    await updateDoc(docRef, {
+      avatar: url
+    })
+  } catch (error) {
+    console.log("Error updating avatar of user: ", error);
+  }
+}

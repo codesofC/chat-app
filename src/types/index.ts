@@ -1,5 +1,5 @@
 import {  User } from "firebase/auth";
-import { FieldValue } from "firebase/firestore";
+import { FieldValue, Timestamp } from "firebase/firestore";
 import React from "react";
 
 export interface PopoverProps {
@@ -19,7 +19,7 @@ export interface AccordionProps {
 }
 export interface AvatarProps {
     avatarUrl?: string,
-    username: string,
+    email: string,
     avatarStyles?: string
 }
 
@@ -52,7 +52,7 @@ export interface ReceiverProps {
     lastMessage: string,
     isSeen: boolean,
     receiverData?: UserProps,
-    updatedAt: any,
+    updatedAt: Timestamp | number,
     chatId: string,
     isReceiverBlocked: boolean,
     isCurrentUserBlocked: boolean

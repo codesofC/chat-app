@@ -10,8 +10,8 @@ const Login = () => {
   
   return (
     <main className="w-full h-full lg:w-[90%] xl:w-4/5 lg:h-[90%] grid lg:grid-cols-2 rounded-xl overflow-hidden shadow-xl">
-      <div className="hidden lg:flex bg-secondary">
-        <img src="/assets/login.png" className="w-full h-full object-cover" />
+      <div className="hidden lg:flex bg-white">
+        <img src="/assets/login.png" className="w-full h-full object-contain" />
       </div>
       <div className="relative flex flex-col bg-white z-10 overflow-hidden">
         <div className="relative px-8 py-12 ">

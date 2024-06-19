@@ -16,13 +16,13 @@ const CardChat = ({ chat }: { chat: ReceiverProps }) => {
     }
   };
 
-  const convertDate = (time: Date) => {
-    const date = new Date(time);
+  const convertDate = (time: unknown) => {
+    const date = new Date(time as Date);
 
     const hours = date.getHours();
     const minutes = date.getMinutes();
 
-    return `${hours}:${minutes}`;
+    return `${hours < 10 ? `0${hours}` : hours}:${minutes < 10 ? `0${minutes}` : minutes}`;
   };
 
   return (
@@ -30,20 +30,19 @@ const CardChat = ({ chat }: { chat: ReceiverProps }) => {
       className="relative w-full p-4 flex items-end justify-between group hover:bg-primary transition-colors duration-150 cursor-pointer"
       onClick={changeUserViewMessage}
     >
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3 max-w-[90%] overflow-hidden">
         <MyAvatar
-          username={chat.receiverData?.username || ""}
+          email={chat.receiverData?.email || ""}
           avatarUrl={chat.receiverData?.avatar}
         />
-        <div className="flex flex-col max-w-[70%]">
+        <div className="max-w-[80%] overflow-hidden">
           <span className="text-black group-hover:text-white font-bold">
             {" "}
             {chat.receiverData?.username}{" "}
           </span>
-          <span className="text-black/80 group-hover:text-white/80 font-extralight line-clamp-1">
-            {" "}
-            {chat.lastMessage}{" "}
-          </span>
+          <p className="text-black/80 group-hover:text-white/80 w-full line-clamp-1">
+            {chat.lastMessage}
+          </p>
         </div>
       </div>
 

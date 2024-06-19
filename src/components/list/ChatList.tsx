@@ -33,8 +33,7 @@ const ChatList = () => {
     
           const allReceiversData = await Promise.all(chatsWithReceiverData)
     
-          setAllChatsData(allReceiversData.sort((a, b) => b.updatedAt - a.updatedAt))
-
+          setAllChatsData(allReceiversData.sort((a, b) => Number(b.updatedAt) - Number(a.updatedAt)))
       }
       })
 
@@ -46,9 +45,9 @@ const ChatList = () => {
 
 
   return (
-    <div className="flex flex-col gap-6 items-center">
+    <div className="w-full flex flex-col gap-6 items-center overflow-x-hidden overflow-y-auto">
       <div className="w-full flex p-4 items-center justify-between">
-        <div className="flex items-center border rounded-md gap-2 px-2">
+        <div className="flex flex-1 items-center border rounded-md gap-2 px-2">
           <Input
             placeholder="Search conversation"
             className="border-none w-full"
@@ -59,7 +58,7 @@ const ChatList = () => {
         <AddNewChat />
       </div>
       {allChatsData ? (
-        <div className="w-full flex flex-col divide-y border-y">
+        <div className="w-full divide-y">
           {allChatsData.map((chat, index) => (
             <CardChat chat={chat} key={index} />
           ))}

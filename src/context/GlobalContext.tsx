@@ -17,7 +17,6 @@ const GlobalContext = ({ children }: { children: React.ReactNode }) => {
     console.log("Erreur fetch");
   }
 
-
   return (
     <context.Provider value={{ user, isLoading, sessionId, setSessionId }}>
       {children}
