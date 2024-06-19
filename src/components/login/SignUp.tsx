@@ -81,7 +81,7 @@ const SignUp = ({ setHandleSign }: LoginProps) => {
         <div className="relative mx-auto flex flex-col items-center justify-center">
           <div className="w-16 h-16 rounded-full overflow-hidden">
             <img
-              src={avatar ? URL.createObjectURL(avatar) : "/assets/avatar.avif"}
+              src={avatar ? URL.createObjectURL(avatar) : "https://api.dicebear.com/9.x/thumbs/svg"}
               className="w-full h-full object-cover cursor-pointer"
             />
           </div>

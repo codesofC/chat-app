@@ -21,7 +21,7 @@ const HearderChat = () => {
       <div className="flex items-center justify-center gap-6">
         <Phone className="cursor-pointer hover:text-primary" />
         <Video className="cursor-pointer hover:text-primary" />
-        <MyPopOver buttonOver={<Ellipsis className="cursor-pointer hover:text-primary z-10" />} popOverClassName="flex flex-col lg:hidden">
+        <MyPopOver buttonOver={<Ellipsis className="cursor-pointer hover:text-primary z-10" />} popOverClassName="flex flex-col lg:hidden z-10">
           <Button className="w-full bg-transparent text-secondary-foreground hover:bg-primary hover:text-foreground sm:hidden"
             onClick={() => setShowChatList(true)}
           > Show List </Button>

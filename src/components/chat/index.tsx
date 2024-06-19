@@ -9,7 +9,7 @@ const Chat = () => {
   const { currentReceiver } = useChatContext()
 
   return currentReceiver?.receiverData ?(
-    <div className="relative flex-[2] bg-foreground flex flex-col max-h-[100%]">
+    <div className="relative w-full md:w-auto md:flex-[2] bg-foreground flex flex-col min-h-full overflow-hidden">
         <HearderChat />
         <ChatContent />
         <FooterChat />

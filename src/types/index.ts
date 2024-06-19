@@ -7,6 +7,8 @@ export interface PopoverProps {
     children: React.ReactNode,
     buttonClassName?: string,
     popOverClassName?: string,
+    open?: boolean,
+    setOpen?: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export interface AccordionProps {

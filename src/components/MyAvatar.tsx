@@ -1,5 +1,5 @@
 import { AvatarProps } from "@/types";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { Avatar, AvatarImage } from "./ui/avatar";
 import { cn } from "@/lib/utils";
 
 const MyAvatar = ({ username, avatarUrl, avatarStyles }: AvatarProps) => {
@@ -8,9 +8,7 @@ const MyAvatar = ({ username, avatarUrl, avatarStyles }: AvatarProps) => {
       {avatarUrl ? (
         <AvatarImage src={avatarUrl} />
       ) : (
-        <AvatarFallback className="text-lg text-black font-bold">
-          {username.charAt(0).toUpperCase()}
-        </AvatarFallback>
+        <AvatarImage src={`https://api.dicebear.com/9.x/thumbs/svg?seed=${username}`} />
       )}
     </Avatar>
   );

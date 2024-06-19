@@ -5,9 +5,11 @@ import MyPopOver from "../MyPopOver";
 import { Button } from "../ui/button";
 import { signout } from "@/lib/Firebase";
 import { useNavigate } from "react-router-dom";
+import { useChatContext } from "@/context/useChatContext";
 
 const UserInfos = () => {
   const { user } = useGlobalContext();
+  const {setShowChatList, currentReceiver, showChatList} = useChatContext()
 
   const navigate = useNavigate()
 
@@ -27,9 +29,9 @@ const UserInfos = () => {
         </div>
       </div>
       
-
-      <MyPopOver buttonOver={<Settings className="cursor-pointer text-white" />}>
-        <Button className="w-full bg-primary" onClick={deconnexionUser}> Logout </Button>
+      <MyPopOver popOverClassName={`z-20 ${!showChatList ? 'hidden sm:block' : 'block'}`} buttonOver={<Settings className="cursor-pointer text-white" />}>
+        <Button className="w-full bg-transparent hover:bg-primary text-black hover:text-white sm:hidden" onClick={() => setShowChatList(!currentReceiver ? true : false)}> Close List </Button>
+        <Button className="w-full bg-transparent hover:bg-primary text-black hover:text-white" onClick={deconnexionUser}> Logout </Button>
       </MyPopOver>
     </div>
   );
