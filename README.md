@@ -27,9 +27,8 @@ To run the project in your local environment, follow these steps:
 - Run `npm install`, `yarn` or `pnpm` in the project directory to install the required dependencies.
 - Run `npm run dev` or `yarn` to get the project started.
 - Open http://localhost:5173 (or the address shown in your console) in your web browser to view the app.
-
-<details>
-<summary> ## 🖼 Demo Images</summary>
+  
+## 🖼 Demo Images</summary>
 ![login1](https://github.com/codesofC/chat-app/assets/76754023/60130a7d-b1ba-4d72-b2e1-fdfda2748a9e)
 ![add](https://github.com/codesofC/chat-app/assets/76754023/d4c450c2-85fd-4ee5-9cd3-3cc58a951872)
 ![login](https://github.com/codesofC/chat-app/assets/76754023/9cdac888-bfac-4c56-b4ae-05ef38fcf9c0)
@@ -37,4 +36,3 @@ To run the project in your local environment, follow these steps:
 ![mobil1](https://github.com/codesofC/chat-app/assets/76754023/c90b1273-28e9-40f8-b43a-2b4d37de1374)
 ![mobil2](https://github.com/codesofC/chat-app/assets/76754023/79517729-a010-4ee0-b7af-567c9100e22a)
 
-</details>
