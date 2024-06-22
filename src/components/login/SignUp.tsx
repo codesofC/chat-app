@@ -4,7 +4,6 @@ import { Card } from "../ui/card";
 import { Input } from "../ui/input";
 import { FieldValues, useForm } from "react-hook-form";
 import { addUser, signup, uploadFiles } from "@/lib/Firebase";
-import { useGlobalContext } from "@/context/useGlobalContext";
 import { useNavigate } from "react-router-dom";
 import { ChangeEvent, useState } from "react";
 
@@ -19,7 +18,6 @@ const SignUp = ({ setHandleSign }: LoginProps) => {
   const [avatar, setAvatar] = useState<File | null>(null);
   const [errorConnection, setErrorConnection] = useState("")
 
-  const { setSessionId } = useGlobalContext();
 
   const navigate = useNavigate();
 
@@ -50,7 +48,6 @@ const SignUp = ({ setHandleSign }: LoginProps) => {
             blocked: [],
           })
             .then(() => {
-              setSessionId(userId);
               navigate("/");
             })
             .catch((error) => {

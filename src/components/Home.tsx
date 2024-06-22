@@ -13,10 +13,9 @@ const Home = () => {
   const { setSessionId, isLoading } = useGlobalContext();
   const navigate = useNavigate();
 
-
   useEffect(() => {
-    const getIfIsSession = async () => {
-      await onAuthStateChanged(auth, (userCredencial) => {
+    const getIfIsSession = () => {
+       onAuthStateChanged(auth, (userCredencial) => {
         if (userCredencial) {
           setSessionId(userCredencial.uid);
         } else {
@@ -27,25 +26,23 @@ const Home = () => {
     getIfIsSession();
   }, [setSessionId, navigate]);
 
-  if(isLoading){
+  if (isLoading) {
     return (
       <div className="w-screen h-screen absolute top-0 left-0 z-50 bg-white flex flex-col gap-4 items-center justify-center">
         <div className="custom-loader"></div>
         <div>Loading...</div>
       </div>
-    )
+    );
   }
 
   return (
-    <ChatContext>
-      <Card className="relative w-full h-full flex rounded-none overflow-hidden border-none">
-        <List 
-        />
-        <Chat />
-        <Details 
-        />
-      </Card>
-    </ChatContext>
+      <ChatContext>
+        <Card className="relative w-full h-full flex rounded-none overflow-hidden border-none">
+          <List />
+          <Chat />
+          <Details />
+        </Card>
+      </ChatContext>
   );
 };
 

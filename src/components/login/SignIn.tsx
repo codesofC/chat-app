@@ -4,7 +4,6 @@ import { Card } from "../ui/card";
 import { Input } from "../ui/input";
 import { FieldValues, useForm } from "react-hook-form";
 import { signIn } from "@/lib/Firebase";
-import { useGlobalContext } from "@/context/useGlobalContext";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
@@ -14,14 +13,12 @@ const SignIn = ({ setHandleSign }: LoginProps) => {
 
   const [errorConnection, setErrorConnection] = useState("")
 
-  const {setSessionId} = useGlobalContext()
   const navigate = useNavigate()
 
   const submitData = async (data: FieldValues) => {
     await signIn(data.email, data.password)
     .then(userId => {
       if(userId){
-        setSessionId(userId)
         navigate("/")
       }
     })
