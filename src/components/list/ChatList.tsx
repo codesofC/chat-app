@@ -45,7 +45,7 @@ const ChatList = () => {
 
 
   return (
-    <div className="w-full flex flex-col gap-6 items-center overflow-x-hidden overflow-y-auto">
+    <div className="relative w-full flex flex-col gap-6 items-center overflow-x-hidden overflow-y-auto">
       <div className="w-full flex p-4 items-center justify-between">
         <div className="flex flex-1 items-center border rounded-md gap-2 px-2">
           <Input

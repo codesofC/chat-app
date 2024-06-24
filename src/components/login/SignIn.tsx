@@ -74,7 +74,7 @@ const SignIn = ({ setHandleSign }: LoginProps) => {
         </div>
 
         <div className="flex flex-col">
-          <p className="text-xs">I don't have account already? {" "}
+          <p className="text-xs">I don't have account. {" "}
             <span 
               className="text-primary underline cursor-pointer"
               onClick={() => setHandleSign(true)}

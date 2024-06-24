@@ -27,8 +27,3 @@ To run the project in your local environment, follow these steps:
 - Run `npm install`, `yarn` or `pnpm` in the project directory to install the required dependencies.
 - Run `npm run dev` or `yarn` to get the project started.
 - Open http://localhost:5173 (or the address shown in your console) in your web browser to view the app.
-
-<details>
-<summary> 🖼 Demo Images</summary>
-<img title="a title" alt="Alt text" src="/assets/login1.png">
-</details>
