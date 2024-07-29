@@ -10,7 +10,7 @@ const Details = () => {
 
 
   return currentReceiver && currentReceiver.receiverData ? (
-    <div className={`absolute md:relative w-full md:w-1/4 h-full bg-background border ${showDetails ? 'flex z-20' : 'hidden lg:flex'} flex-col pb-4 pt-24`}>
+    <div className={`absolute md:relative w-full md:w-1/4 h-full bg-background ${showDetails ? 'flex z-20' : 'hidden lg:flex'} flex-col pb-4 pt-24`}>
       <HeaderDetails email={currentReceiver.receiverData.email} username={currentReceiver.receiverData.username} avatarUrl={currentReceiver.receiverData.avatar} />
 
       <div className="p-4 flex-1 overflow-y-auto">

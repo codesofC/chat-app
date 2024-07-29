@@ -1,4 +1,3 @@
-import { Plus } from "lucide-react";
 import { Button } from "../ui/button";
 import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog";
 import { Input } from "../ui/input";
@@ -33,11 +32,11 @@ const AddNewChat = () => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="text-secondary-foreground bg-transparent hover:bg-transparent">
-          <Plus />
+        <Button className="text-white bg-primary">
+          New chat
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] bg-secondary">
+      <DialogContent className="sm:max-w-[425px]">
         <div className="flex flex-col py-4 gap-4">
           <div className="w-full">
             <Input

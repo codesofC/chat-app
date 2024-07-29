@@ -36,17 +36,17 @@ const CardChat = ({ chat }: { chat: ReceiverProps }) => {
           avatarUrl={chat.receiverData?.avatar}
         />
         <div className="max-w-[80%] overflow-hidden">
-          <span className="text-black group-hover:text-white font-bold">
+          <span className="text-foreground group-hover:text-white font-bold">
             {" "}
             {chat.receiverData?.username}{" "}
           </span>
-          <p className="text-black/80 group-hover:text-white/80 w-full line-clamp-1">
+          <p className="text-foreground/80 group-hover:text-white/80 w-full line-clamp-1">
             {chat.lastMessage}
           </p>
         </div>
       </div>
 
-      <span className="text-sm text-black/60 group-hover:text-white/80">
+      <span className="text-sm text-foreground/60 group-hover:text-white/80">
         {convertDate(chat.updatedAt)}
       </span>
 

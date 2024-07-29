@@ -12,8 +12,8 @@ export const MessageText = ({
   sendedAt,
 }: MessagesProps) => (
   <div
-    className={`max-w-full relative px-2 py-1 flex gap-2 items-end rounded-md ${
-      senderId === userId ? "bg-primary text-white" : "bg-secondary"
+    className={`max-w-full relative px-2 py-1 flex gap-2 items-end rounded-xl text-white ${
+      senderId === userId ? "bg-primary rounded-br-none" : "bg-muted-foreground rounded-bl-none"
     }`}
   >
     <p className="max-w-[95%] whitespace-normal text-wrap flex flex-wrap overflow-hidden">

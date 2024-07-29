@@ -65,7 +65,6 @@ const SignUp = ({ setHandleSign }: LoginProps) => {
 
   return (
     <Card className="mx-12 mt-8 bg-transparent border-none shadow-none">
-      <h1 className="text-2xl text-black text-center"> Sign Up </h1>
 
       {errorConnection && (<p className="text-red-600">
         {errorConnection}
@@ -150,7 +149,7 @@ const SignUp = ({ setHandleSign }: LoginProps) => {
           )}
         </div>
 
-        <div className="flex flex-col">
+        <div className="flex flex-col text-xs">
           <p>
             I already have a account.{" "}
             <span

@@ -9,11 +9,11 @@ const Login = () => {
   
   
   return (
-    <main className="w-full h-full lg:w-[90%] xl:w-4/5 lg:h-[90%] grid lg:grid-cols-2 rounded-xl overflow-hidden shadow-xl">
-      <div className="hidden lg:flex bg-white">
-        <img src="/assets/login.png" className="w-full h-full object-contain" />
+    <main className="w-full h-full lg:w-[90%] xl:w-4/5 lg:h-[90%] grid lg:grid-cols-2 rounded-xl overflow-hidden shadow-xl dark:shadow-2xl">
+      <div className="hidden lg:flex w-full">
+        <img src="https://cdni.iconscout.com/illustration/premium/thumb/chatting-1805543-1537818.png" className="w-full h-full object-contain" />
       </div>
-      <div className="relative flex flex-col bg-white z-10 overflow-hidden">
+      <div className="relative flex flex-col z-10 overflow-hidden">
         <div className="relative px-8 py-12 ">
           <div
             className={

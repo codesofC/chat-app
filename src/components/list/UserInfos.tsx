@@ -8,12 +8,15 @@ import { useNavigate } from "react-router-dom";
 import { useChatContext } from "@/context/useChatContext";
 import { Input } from "../ui/input";
 import { ChangeEvent } from "react";
+import { useTheme } from "@/context/theme/useTheme";
 
 const UserInfos = () => {
   const { user, sessionId } = useGlobalContext();
   const { setShowChatList, currentReceiver, showChatList } = useChatContext();
 
   const navigate = useNavigate();
+
+  const {setTheme, theme} = useTheme()
 
   const deconnexionUser = () => {
     signout().then(() => {
@@ -59,6 +62,12 @@ const UserInfos = () => {
         popOverClassName={`z-20 ${!showChatList ? "hidden sm:block" : "block"}`}
         buttonOver={<Settings className="cursor-pointer text-white" />}
       >
+        <Button
+          className="w-full bg-transparent hover:bg-primary text-black hover:text-white"
+          onClick={() => setTheme(prev => prev === "light" ? "dark" : "light")}
+        >
+          {theme === "dark" ? "Light" : "Dark"} mode
+        </Button>
         <Button
           className="w-full bg-transparent hover:bg-primary text-black hover:text-white sm:hidden"
           onClick={() => setShowChatList(!currentReceiver ? true : false)}

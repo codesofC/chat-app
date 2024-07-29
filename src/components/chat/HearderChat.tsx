@@ -12,7 +12,7 @@ const HearderChat = () => {
   if(!currentReceiver) return
 
   return (
-    <div className="w-full p-4 flex items-center justify-between border-b border-secondary">
+    <div className="w-full px-4 py-6 flex items-center justify-between border-b border-secondary shadow-md">
       <div className="flex items-center gap-2 cursor-pointer">
         <MyAvatar email={currentReceiver.receiverData?.email || ""} avatarUrl={currentReceiver.receiverData?.avatar} />
         <span className="font-semibold"> {currentReceiver.receiverData?.username} </span>

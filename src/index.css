@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -6,8 +6,8 @@
 
 @layer base {
   :root {
-    --background: 197 24% 94%;
-    --foreground: 207 21% 90%;
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
     --muted: 0 0% 96.1%;
     --muted-foreground: 0 0% 45.1%;
     --popover: 0 0% 100%;
@@ -24,18 +24,41 @@
     --accent-foreground: 0 0% 9%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --ring: 0 72.2% 50.6%;
+    --ring: 203 79% 48%;
     --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --primary: 203 79% 48%;
+    --primary-foreground: 0 85.7% 97.3%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --ring: 203 79% 48%;
   }
 }
 
-*{
+
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
 }
 
-body{
+body {
   font-family: "Lato", sans-serif;
   font-weight: 400;
   font-style: normal;
@@ -44,28 +67,29 @@ body{
 .custom-loader {
   width: 100px;
   height: 100px;
-  background:
-    radial-gradient(farthest-side,#ff4f5a 90%,#0000) center/40px 40px,
-    radial-gradient(farthest-side,#6F6D91   90%,#0000) bottom/20px 20px;
+  background: radial-gradient(farthest-side, #ff4f5a 90%, #0000) center/40px
+      40px,
+    radial-gradient(farthest-side, #6f6d91 90%, #0000) bottom/20px 20px;
   background-repeat: no-repeat;
   animation: s7 1s infinite linear;
   position: relative;
 }
-.custom-loader::before {    
-  content:"";
+.custom-loader::before {
+  content: "";
   position: absolute;
-  width:8px;
-  height:8px;
-  inset:auto 0 16px;
+  width: 8px;
+  height: 8px;
+  inset: auto 0 16px;
   margin: auto;
-  background:#E4E4ED;
+  background: #e4e4ed;
   border-radius: 50%;
   transform-origin: 50% calc(100% + 10px);
-  animation:inherit;
+  animation: inherit;
   animation-duration: 0.5s;
 }
 
-
-@keyframes s7 { 
-  100%{transform: rotate(1turn)}
+@keyframes s7 {
+  100% {
+    transform: rotate(1turn);
+  }
 }

@@ -46,7 +46,7 @@ const ChatList = () => {
 
   return (
     <div className="relative w-full flex flex-col gap-6 items-center overflow-x-hidden overflow-y-auto">
-      <div className="w-full flex p-4 items-center justify-between">
+      <div className="w-full flex p-4 items-center justify-between gap-4">
         <div className="flex flex-1 items-center border rounded-md gap-2 px-2">
           <Input
             placeholder="Search conversation"
@@ -58,13 +58,13 @@ const ChatList = () => {
         <AddNewChat />
       </div>
       {allChatsData ? (
-        <div className="w-full divide-y">
+        <div className="w-full divide-y divide-border">
           {allChatsData.map((chat, index) => (
             <CardChat chat={chat} key={index} />
           ))}
         </div>
       ): (
-        <span className="mt-4 w-full text-center"> 0 conversation </span>
+        <span className="mt-4 w-full text-center text-secondary"> 0 conversation </span>
       )}
     </div>
   );

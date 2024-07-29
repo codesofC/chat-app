@@ -49,12 +49,8 @@ const FooterChat = () => {
     sendMedia(fileToSend)
   }
 
-  return currentReceiver && (currentReceiver.isReceiverBlocked || currentReceiver.isCurrentUserBlocked) ? (
-    <Card className="flex gap-2 items-center justify-center p-2 mx-4 mb-4">
-      Conversation blocked
-    </Card>
-  ) : (
-    <Card className="flex gap-2 items-center justify-between p-2 mx-4 mb-4">
+  return currentReceiver && (
+    <Card className="flex gap-2 items-center justify-between p-2 mx-4 mb-4 border-gray-200">
       <div className="relative">
         <Smile
           size={20}

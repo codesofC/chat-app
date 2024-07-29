@@ -2,6 +2,11 @@ import {  User } from "firebase/auth";
 import { FieldValue, Timestamp } from "firebase/firestore";
 import React from "react";
 
+export interface ThemeContextProps{
+    theme: "light" | "dark"
+    setTheme: React.Dispatch<React.SetStateAction<"light" | "dark">>
+}
+
 export interface PopoverProps {
     buttonOver: React.ReactNode,
     children: React.ReactNode,

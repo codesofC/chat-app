@@ -32,7 +32,9 @@ const SignIn = ({ setHandleSign }: LoginProps) => {
 
   return (
     <Card className="mx-12 mt-12 bg-transparent border-none shadow-none">
-      <h1 className="text-2xl text-black text-center"> Sign In </h1>
+      <div className="size-20 flex items-center justify-center mx-auto">
+        <img src="/assets/logo.png" alt="logo" className="w-full h-full" />
+      </div>
 
       {errorConnection && (<p className="text-red-600">
         {errorConnection}

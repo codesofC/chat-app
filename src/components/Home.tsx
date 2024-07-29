@@ -8,6 +8,7 @@ import { auth } from "@/lib/Firebase";
 import { useNavigate } from "react-router-dom";
 import { useGlobalContext } from "@/context/useGlobalContext";
 import ChatContext from "@/context/ChatContext";
+import Loading from "./Loading";
 
 const Home = () => {
   const { setSessionId, isLoading } = useGlobalContext();
@@ -28,10 +29,7 @@ const Home = () => {
 
   if (isLoading) {
     return (
-      <div className="w-screen h-screen absolute top-0 left-0 z-50 bg-white flex flex-col gap-4 items-center justify-center">
-        <div className="custom-loader"></div>
-        <div>Loading...</div>
-      </div>
+      <Loading />
     );
   }
 
