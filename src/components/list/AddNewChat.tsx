@@ -1,11 +1,11 @@
 import { Button } from "../ui/button";
-import { Dialog, DialogContent, DialogTrigger } from "../ui/dialog";
 import { Input } from "../ui/input";
 import { useState } from "react";
 import { createNewChat, getUsersToAdd } from "@/lib/Firebase";
 import { UserProps } from "@/types";
 import { useGlobalContext } from "@/context/useGlobalContext";
 import MyAvatar from "../MyAvatar";
+import { Credenza, CredenzaContent, CredenzaTrigger } from "../ui/credenza";
 
 const AddNewChat = () => {
   const [usersFounded, setUsersFounded] = useState<UserProps[]>([]);
@@ -30,13 +30,13 @@ const AddNewChat = () => {
   };
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger asChild>
+    <Credenza open={open} onOpenChange={setOpen}>
+      <CredenzaTrigger asChild>
         <Button className="text-white bg-primary">
           New chat
         </Button>
-      </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      </CredenzaTrigger>
+      <CredenzaContent className="md:max-w-[425px] px-6 mb-6 md:mb-0">
         <div className="flex flex-col py-4 gap-4">
           <div className="w-full">
             <Input
@@ -76,8 +76,8 @@ const AddNewChat = () => {
             </div>
           </div>
         </div>
-      </DialogContent>
-    </Dialog>
+      </CredenzaContent>
+    </Credenza>
   );
 };
 

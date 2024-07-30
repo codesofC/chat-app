@@ -9,6 +9,7 @@ import { useChatContext } from "@/context/useChatContext";
 import { Input } from "../ui/input";
 import { ChangeEvent } from "react";
 import { useTheme } from "@/context/theme/useTheme";
+import { cn } from "@/lib/utils";
 
 const UserInfos = () => {
   const { user, sessionId } = useGlobalContext();
@@ -59,7 +60,7 @@ const UserInfos = () => {
       </div>
 
       <MyPopOver
-        popOverClassName={`z-20 ${!showChatList ? "hidden sm:block" : "block"}`}
+        popOverClassName={`z-20`}
         buttonOver={<Settings className="cursor-pointer text-white" />}
       >
         <Button
@@ -69,7 +70,7 @@ const UserInfos = () => {
           {theme === "dark" ? "Light" : "Dark"} mode
         </Button>
         <Button
-          className="w-full bg-transparent hover:bg-primary text-black hover:text-white sm:hidden"
+          className={cn(!showChatList ? "hidden" : "block", "w-full bg-transparent hover:bg-primary text-black hover:text-white sm:hidden")}
           onClick={() => setShowChatList(!currentReceiver ? true : false)}
         >
           {" "}

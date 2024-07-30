@@ -42,7 +42,7 @@ const SignIn = ({ setHandleSign }: LoginProps) => {
 
       <form 
         onSubmit={handleSubmit(submitData)}
-        className="flex flex-col gap-6 items-start mx-6 mt-12"
+        className="flex flex-col gap-6 items-start md:mx-6 mt-12"
       >
         <div className="w-full flex flex-col gap-1">
           <label htmlFor="email">Email</label>

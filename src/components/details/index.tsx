@@ -20,7 +20,7 @@ const Details = () => {
       <X className="absolute top-4 right-4 cursor-pointer md:hidden" onClick={() => setShowDetails(false)} />
     </div>
   ) : (
-    <div className="flex-1 h-full bg-background flex items-center justify-center font-semibold">
+    <div className={`flex-1 h-full bg-background flex items-center justify-center font-semibold ${showDetails ? 'flex z-20' : 'hidden lg:flex'}`}>
       No User Selected
     </div>
   );

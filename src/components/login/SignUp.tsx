@@ -72,7 +72,7 @@ const SignUp = ({ setHandleSign }: LoginProps) => {
 
       <form
         onSubmit={handleSubmit(submitData)}
-        className="flex flex-col gap-4 items-start mx-6 mt-12"
+        className="flex flex-col gap-4 items-start md:mx-6 mt-12"
       >
         <div className="relative mx-auto flex flex-col items-center justify-center">
           <div className="w-16 h-16 rounded-full overflow-hidden">
