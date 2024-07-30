@@ -10,6 +10,7 @@ import { Credenza, CredenzaContent, CredenzaTrigger } from "../ui/credenza";
 const AddNewChat = () => {
   const [usersFounded, setUsersFounded] = useState<UserProps[]>([]);
   const [open, setOpen] = useState(false);
+  const [isPending, setIsPending] = useState(false);
 
   const { user } = useGlobalContext();
 
@@ -22,11 +23,15 @@ const AddNewChat = () => {
   };
 
   const addChat = async (receverUid: string) => {
+    setIsPending(true)
     if (user) {
-      await createNewChat(user?.uid, receverUid);
+      await createNewChat(user?.uid, receverUid).then(() => {
+        setIsPending(false)
+      })
     }
     setOpen(false);
     setUsersFounded([]);
+    
   };
 
   return (
@@ -63,7 +68,7 @@ const AddNewChat = () => {
                       />
                       <span className="font-semibold"> {user.username} </span>
                     </div>
-                    <Button type="submit" onClick={() => addChat(user.uid)}>
+                    <Button type="submit"  onClick={() => addChat(user.uid)} disabled={isPending} className="disabled:bg-gray-300 disabled:text-black/50">
                       Start
                     </Button>
                   </div>

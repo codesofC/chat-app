@@ -16,6 +16,12 @@ export interface PopoverProps {
     setOpen?: React.Dispatch<React.SetStateAction<boolean>>
 }
 
+export interface CustomButtonProps {
+    label: string;
+    clickFn?: () => void;
+    className?: string
+}
+
 export interface AccordionProps {
     title: string,
     children: React.ReactNode,

@@ -17,6 +17,7 @@ const SignUp = ({ setHandleSign }: LoginProps) => {
 
   const [avatar, setAvatar] = useState<File | null>(null);
   const [errorConnection, setErrorConnection] = useState("")
+  const [isPending, setIsPending] = useState(false)
 
 
   const navigate = useNavigate();
@@ -33,10 +34,10 @@ const SignUp = ({ setHandleSign }: LoginProps) => {
   const submitData = async (data: FieldValues) => {
     let url: string | undefined;
 
+    setIsPending(true)
     if (avatar) {
       url = await uploadFiles(avatar);
     }
-
     await signup(data.email, data.password)
       .then(async (userId) => {
         if (userId) {
@@ -60,6 +61,7 @@ const SignUp = ({ setHandleSign }: LoginProps) => {
       })
       .finally(() => {
         reset();
+        setIsPending(false)
       });
   };
 
@@ -162,7 +164,7 @@ const SignUp = ({ setHandleSign }: LoginProps) => {
           </p>
         </div>
 
-        <Button className="bg-primary text-lg font-bold w-full">
+        <Button className="bg-primary text-lg font-bold w-full disabled:bg-gray-300 disabled:text-black/50" disabled={isPending}>
           {" "}
           Sign Up{" "}
         </Button>

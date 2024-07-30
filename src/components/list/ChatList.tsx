@@ -57,14 +57,14 @@ const ChatList = () => {
 
         <AddNewChat />
       </div>
-      {allChatsData ? (
+      {allChatsData.length > 0 ? (
         <div className="w-full divide-y divide-border">
           {allChatsData.map((chat, index) => (
             <CardChat chat={chat} key={index} />
           ))}
         </div>
       ): (
-        <span className="mt-4 w-full text-center text-secondary"> 0 conversation </span>
+        <span className="mt-4 w-full text-center text-foreground"> 0 conversation </span>
       )}
     </div>
   );
