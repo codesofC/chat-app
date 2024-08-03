@@ -2,17 +2,21 @@ import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { useState } from "react";
 import { createNewChat, getUsersToAdd } from "@/lib/Firebase";
-import { UserProps } from "@/types";
+import { ReceiverProps, UserProps } from "@/types";
 import { useGlobalContext } from "@/context/useGlobalContext";
 import MyAvatar from "../MyAvatar";
 import { Credenza, CredenzaContent, CredenzaTrigger } from "../ui/credenza";
+import { useChatContext } from "@/context/useChatContext";
 
-const AddNewChat = () => {
+
+const AddNewChat = ({ allChatsData }: {allChatsData: ReceiverProps[]}) => {
+
   const [usersFounded, setUsersFounded] = useState<UserProps[]>([]);
   const [open, setOpen] = useState(false);
   const [isPending, setIsPending] = useState(false);
 
   const { user } = useGlobalContext();
+  const {setCurrentReceiver} = useChatContext()
 
   const handleSearch = async (username: string) => {
     const founded = await getUsersToAdd(username, user?.username || "");
@@ -22,12 +26,17 @@ const AddNewChat = () => {
     }
   };
 
-  const addChat = async (receverUid: string) => {
+  const addChat = async (receiverUid: string) => {
     setIsPending(true)
     if (user) {
-      await createNewChat(user?.uid, receverUid).then(() => {
-        setIsPending(false)
-      })
+      const isChatExisted = allChatsData.find(chat => chat.receiverData?.uid === receiverUid);
+
+      if(!isChatExisted){
+        await createNewChat(user.uid, receiverUid);
+      }else{
+        setCurrentReceiver(isChatExisted)
+      }
+
     }
     setOpen(false);
     setUsersFounded([]);
