@@ -1,6 +1,6 @@
-# Chat-Friendly - Chat App
+# SnapTalk - Chat App
 
-Chat-Friendly is a realtime chat app built with TypeScript, React, Vite Js, Firebase, and other technologies. This chat app is purposefully made for the web, like a web chat app, working on mobile devices too.
+SnapTalk is a realtime chat app built with TypeScript, React, Vite Js, Firebase, and other technologies. This chat app is purposefully made for the web, like a web chat app, working on mobile devices too.
 
 ## 🎈Features
 - 🔑 Sign Up with username, email, password and avatar
